@@ -1,12 +1,12 @@
 # pyqt5 이용한 가계부 정리 프로그램
 
-<img width="1373" alt="Screenshot 2023-12-14 at 2 48 27 PM" src="https://github.com/TeraSeo/-money-managing-program-using-pyqt5/assets/96968917/da4a48be-ffc5-407d-8ec2-73775809b7be">
+<img width="1395" alt="Screenshot 2023-12-14 at 11 10 06 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/0758d922-cbf5-4726-a361-f26ddd7770bd">
 <br>
 <br>
-<img width="1281" alt="Screenshot 2023-12-14 at 2 48 52 PM" src="https://github.com/TeraSeo/-money-managing-program-using-pyqt5/assets/96968917/d7115766-0166-4953-8889-530756cbb613">
+<img width="1396" alt="Screenshot 2023-12-14 at 11 10 30 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/14410f04-f946-4bfa-a31f-e85c55bb7b8b">
 <br>
 <br>
-<img width="1285" alt="Screenshot 2023-12-14 at 2 49 15 PM" src="https://github.com/TeraSeo/-money-managing-program-using-pyqt5/assets/96968917/499db50c-03ef-4ca0-91df-0b966b994a58">
+<img width="1385" alt="Screenshot 2023-12-14 at 11 11 10 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/fd4efea4-6b92-40ca-9157-c44df8bd48e0">
 
 <br><br>
 
