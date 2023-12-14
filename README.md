@@ -1,6 +1,6 @@
 # pyqt5 이용한 가계부 정리 프로그램
 
-<img width="1395" alt="Screenshot 2023-12-14 at 11 10 06 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/0758d922-cbf5-4726-a361-f26ddd7770bd">
+<img width="1387" alt="Screenshot 2023-12-14 at 11 12 12 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/97ed1c29-7ca1-468a-80e1-e08a915f307a">
 <br>
 <br>
 <img width="1396" alt="Screenshot 2023-12-14 at 11 10 30 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/14410f04-f946-4bfa-a31f-e85c55bb7b8b">
