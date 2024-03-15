@@ -19,13 +19,9 @@ I felt I need to start to manage money, so I made this program.
 <br/>
   <li>Language: Python</li>
 <br/>
-  <li>프로젝트 소개: 가계부 정리 프로그램은 수입 및 지출을 시각적으로 표시하여 재정을 효율적으로 관리할 수 있도록 만들어 졌습니다. 이 프로그램은 사용자가 수입 및 지출 내역을 손쉽게 등록, 수정 및 삭제할 수 있도록 하는 단순한 GUI를 제공합니다. 또한 재무 활동을 빠르게 파악할 수 있도록 차트를 제공합니다.</li>
-<br/>
-  <li>개발 파트:</li>
-<ul>
-  <li>GUI</li>
-  <li>가계부 정리 기능</li>
-</ul>
+  <li>Introduction: This money management program shows income and outcome using charts with various sectors.</li>
+  <li>It provides efficient functionalities for money management. </li>
+  <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
 </ul>
 
 <br><br>
