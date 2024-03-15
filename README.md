@@ -30,21 +30,11 @@ I felt I need to start to manage money, so I made this program.
 
 <br><br>
 
-## 기술 스택
+## Techs
 
-
-  프로그래밍 언어:
-  <ul><li>Python: PyQt5, pandas, matplotlib을 사용하여 Python 언어로 개발되었습니다.</li></ul>
+  <h3>Programming Languages:</h3>
+  <li>Python(PyQt5, pandas, matplotlib)</li>
   <br>
-  GUI 프레임워크:
-  <ul><li>PyQt5: Qt 기반의 GUI 프레임워크를 사용하고 있습니다.</li></ul>
-  <br>
-  데이터 처리:
-  <ul><li>pandas: 데이터 처리 및 분석을 위한 라이브러리로 사용되었습니다.</li></ul>
-  <br>
-  시각화:
-  <ul><li>matplotlib: 데이터 시각화를 위한 라이브러리로 사용되었습니다.</li></ul>
-  <br>
-  차트 및 시각화 도구:
-  <ul><li>QtChart: PyQt5에서 제공하는 차트 및 시각화 도구를 사용하고 있습니다.</li></ul>
+  <h3>GUI framework:</h3>
+  <li>PyQt5</li>
 </ul>
