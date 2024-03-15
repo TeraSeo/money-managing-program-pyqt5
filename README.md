@@ -11,22 +11,24 @@ I felt I need to start to manage money, so I made this program.
 
 ## Project Information
 
+<h3>Program name: Money Management Program</h3>
+
 <h3>Introduction: </h3>
 <ul>
   <li>This money management program shows income and outcome using charts with various sectors.</li>
   <li>It provides efficient functionalities for money management. </li>
   <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
 </ul>
-  
+
+<br>
 <ul>
-  <li>Program name: Money Management Program</li>
-<br/>
+<br>
   <li>Period: 14th Dec 2024 ~ 14th Dec 2024</li>
-<br/>
+<br>
   <li>Participant: 1</li>
-<br/>
+<br>
   <li>Language: Python</li>
-<br/>
+<br>
 </ul>
 
 <br><br>
