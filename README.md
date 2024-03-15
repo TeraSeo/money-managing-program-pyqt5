@@ -32,9 +32,9 @@ I felt I need to start to manage money, so I made this program.
 
 ## Techs
 
-  <h3>Programming Languages:</h3>
+  <h4>Programming Languages:</h4>
   <li>Python(PyQt5, pandas, matplotlib)</li>
   <br>
-  <h3>GUI framework:</h3>
+  <h4>GUI framework:</h4>
   <li>PyQt5</li>
 </ul>
