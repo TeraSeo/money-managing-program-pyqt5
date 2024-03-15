@@ -19,9 +19,13 @@ I felt I need to start to manage money, so I made this program.
 <br/>
   <li>Language: Python</li>
 <br/>
-  <li>Introduction: This money management program shows income and outcome using charts with various sectors.</li>
-  <li>It provides efficient functionalities for money management. </li>
-  <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
+
+  <h3>Introduction: </h3>
+  <ul>
+    <li>This money management program shows income and outcome using charts with various sectors.</li>
+    <li>It provides efficient functionalities for money management. </li>
+    <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
+  </ul>
 </ul>
 
 <br><br>
