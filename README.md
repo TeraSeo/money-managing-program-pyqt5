@@ -1,4 +1,4 @@
-# pyqt5 이용한 가계부 정리 프로그램
+# Money Management program using PyQt5
 
 <img width="1389" alt="Screenshot 2024-03-15 at 6 05 06 PM" src="https://github.com/TeraSeo/money-managing-program-pyqt5/assets/96968917/92babc8b-21e4-4b82-bed8-9eaf328b6c9c">
 
@@ -11,7 +11,7 @@ I felt I need to start to manage money, so I made this program.
 
 ## Project Information
 
-<h3>Program name: Money Management Program</h3>
+<br>
 
 <h3>Introduction: </h3>
 <ul>
