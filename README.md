@@ -10,6 +10,14 @@ I felt I need to start to manage money, so I made this program.
 <br><br>
 
 ## Project Information
+
+<h3>Introduction: </h3>
+<ul>
+  <li>This money management program shows income and outcome using charts with various sectors.</li>
+  <li>It provides efficient functionalities for money management. </li>
+  <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
+</ul>
+  
 <ul>
   <li>Program name: Money Management Program</li>
 <br/>
@@ -19,13 +27,6 @@ I felt I need to start to manage money, so I made this program.
 <br/>
   <li>Language: Python</li>
 <br/>
-
-  <h3>Introduction: </h3>
-  <ul>
-    <li>This money management program shows income and outcome using charts with various sectors.</li>
-    <li>It provides efficient functionalities for money management. </li>
-    <li>With user friendly GUI this program user can easily register, modify and remove income or outcome.</li>
-  </ul>
 </ul>
 
 <br><br>
