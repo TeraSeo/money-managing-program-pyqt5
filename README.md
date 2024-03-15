@@ -9,7 +9,7 @@ I felt I need to start to manage money, so I made this program.
 
 <br><br>
 
-## 프로젝트 정보
+## Project Information
 <ul>
   <li>Program name: Money Management Program</li>
 <br/>
