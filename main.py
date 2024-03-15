@@ -18,17 +18,17 @@ import sys
 class Main(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("가계부 정리 프로그램")
+        self.setWindowTitle("money management program")
         self.setGeometry(50, 50, 1400, 800)
         self.initUI()
         self.trans_list = []
         self.whole_btn_clicked = True
-        self.incomeCatList = ['이자', '배당', '급여', '기타']
-        self.outcomeCatList = ['식대', '의류' ,'간식', '여가' ,'생활' '보험', '자기 개발', '기타']
+        self.incomeCatList = ['interest', 'dividend', 'salary', 'etc.']
+        self.outcomeCatList = ['food', 'fashion' ,'snack', 'leisure' ,'life' 'insurance', 'self development', 'etc.']
 
         try:
             self.dataset = pd.read_csv('data.csv', encoding='utf-8')
-            self.df = pd.DataFrame(data = self.dataset.values,columns = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'])
+            self.df = pd.DataFrame(data = self.dataset.values,columns = ['date', 'sector', 'amount', 'details', 'note'])
             self.table.setRowCount(len(self.dataset) + 1)
             for i in range(len(self.dataset)):
                 self.table.setItem(i,0, QTableWidgetItem(str(self.df.iloc[i,0])))
@@ -38,14 +38,14 @@ class Main(QWidget):
                 self.table.setItem(i,4, QTableWidgetItem(str(self.df.iloc[i,4])))
 
         except pd.errors.EmptyDataError:
-            self.df = pd.DataFrame(columns = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'])
-            print('Empty csv file!')
+            self.df = pd.DataFrame(columns = ['date', 'sector', 'amount', 'details', 'note'])
+            print('Empty csv file !')
 
     #UI 보여줌
     def initUI(self):
         
         self.table_clicked_j = False
-        self.trans_date_label = QLabel('거래 일자', self)
+        self.trans_date_label = QLabel('date', self)
         self.trans_date_label.setGeometry(20,25,70,40)
 
         self.datetime = QDate.currentDate() 
@@ -54,7 +54,7 @@ class Main(QWidget):
         self.date_textbox.setAlignment(QtCore.Qt.AlignRight)
         self.date_textbox.setText(self.datetime.toString(Qt.ISODate))
 
-        self.trans_amount_label = QLabel('거래 금액', self)
+        self.trans_amount_label = QLabel('amount', self)
         self.trans_amount_label.setGeometry(20,85,70,40)
         self.amount_textbox = QLineEdit(self)
         self.amount_textbox.setGeometry(100,90, 120,30)
@@ -62,26 +62,26 @@ class Main(QWidget):
         self.amount_textbox.setMaxLength(10)
         self.amount_textbox.setAlignment(QtCore.Qt.AlignRight)
 
-        self.trans_selec_label = QLabel('거래 구분',self)
+        self.trans_selec_label = QLabel('sector',self)
         self.trans_selec_label.setGeometry(250,25,70,40)
     
         self.btn_1 = QComboBox(self)
-        self.btn_1.addItem('수입')
-        self.btn_1.addItem('지출')
+        self.btn_1.addItem('income')
+        self.btn_1.addItem('outcome')
         
         self.btn_1.activated[str].connect(self.setCategory)
         self.btn_1.setGeometry(330, 30,170,30)
         
-        self.trans_label = QLabel('상세 내역', self)
+        self.trans_label = QLabel('details', self)
         self.trans_label.setGeometry(250,85,70,40)
         self.btn_2 = QComboBox(self)
         self.btn_2.setGeometry(330,90,170,30)
-        self.btn_2.addItem('이자')
-        self.btn_2.addItem('배당')
-        self.btn_2.addItem('급여')
-        self.btn_2.addItem('기타')
+        self.btn_2.addItem('interest')
+        self.btn_2.addItem('dividend')
+        self.btn_2.addItem('salary')
+        self.btn_2.addItem('etc.')
         
-        self.note_label = QLabel('비고', self)
+        self.note_label = QLabel('note', self)
         self.note_label.setGeometry(20,130,70,40)
         
 
@@ -90,44 +90,44 @@ class Main(QWidget):
         self.note_textbox.setAlignment(QtCore.Qt.AlignTop)
         self.note_textbox.setMaxLength(25)
 
-        self.regis_btn = QPushButton('등록',self)
+        self.regis_btn = QPushButton('register',self)
         self.regis_btn.setGeometry(20,245,105,30)
         self.regis_btn.clicked.connect(self.register)
     
-        self.modify_btn = QPushButton('수정',self)
+        self.modify_btn = QPushButton('modify',self)
         self.modify_btn.setGeometry(145,245,105,30)
         self.modify_btn.clicked.connect(self.modify)
 
-        self.delete_btn = QPushButton('삭제',self)
+        self.delete_btn = QPushButton('delete',self)
         self.delete_btn.setGeometry(270,245,105,30)
         self.delete_btn.clicked.connect(self.delete)
 
-        self.clear_btn = QPushButton('초기화',self)
+        self.clear_btn = QPushButton('reset',self)
         self.clear_btn.setGeometry(395,245,105,30)
         self.clear_btn.clicked.connect(self.reset)
 
-        self.income_check_btn = QPushButton('수입 내역 조회', self)
+        self.income_check_btn = QPushButton('show income', self)
         self.income_check_btn.setGeometry(20,290,230,30)
         self.income_check_btn.clicked.connect(self.showIncomeList)
 
-        self.expense_check_btn = QPushButton('지출 내역 조회', self)
+        self.expense_check_btn = QPushButton('show outcome', self)
         self.expense_check_btn.setGeometry(270,290,230,30)
         self.expense_check_btn.clicked.connect(self.showOutcomeList)
 
-        self.whole_check_btn = QPushButton('전체 내역 조회', self)
+        self.whole_check_btn = QPushButton('show all', self)
         self.whole_check_btn.setGeometry(20,335,480,30)
         self.whole_check_btn.clicked.connect(self.showWhole)
 
         #데이터 조회
 
-        self.check_label = QLabel('데이터 조회',self)
+        self.check_label = QLabel('show data',self)
         self.check_label.setGeometry(540,25,100,40)
         self.check_label.setFont(QFont('Bold',10))
 
         self.table = QTableWidget(self)
         self.table.setRowCount(self.table.rowCount() + 1)
         self.table.setColumnCount(5)
-        self.table.setHorizontalHeaderLabels(['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'])
+        self.table.setHorizontalHeaderLabels(['date', 'sector', 'amount', 'details', 'note'])
         self.table.setColumnWidth(0,150)
         self.table.setColumnWidth(1,120)
         self.table.setColumnWidth(2,120)
@@ -143,9 +143,9 @@ class Main(QWidget):
         self.canvas.setGeometry(50,470,1400,500)
 
         self.widget = QWidget(self.canvas)
-        self.income_chart = QPushButton("수입 차트", self.canvas)
-        self.outcome_chart = QPushButton('지출 차트', self.canvas)
-        self.compare_chart = QPushButton("비교 차트", self.canvas)
+        self.income_chart = QPushButton("income chart", self.canvas)
+        self.outcome_chart = QPushButton('outcome chart', self.canvas)
+        self.compare_chart = QPushButton("comparing chart", self.canvas)
         self.income_chart.setGeometry(20,20,130,40)
         self.outcome_chart.setGeometry(20,90,130,40)
         self.compare_chart.setGeometry(20,160,130,40)
@@ -186,13 +186,13 @@ class Main(QWidget):
         self.canvas.setWindowTitle("chart")
         self.canvas.show()
 
-    # 데이터 등록
+    # 데이터 register
     def register(self):    
         self.trans_list = []
         self.table_clicked_j = False
 
         if not self.whole_btn_clicked:
-            QMessageBox.about(self, "Title", "전체 조회를 눌러주세요")
+            QMessageBox.about(self, "Title", "press show all")
 
         if self.amount_textbox.text() != "" and self.date_textbox.text() != "" and self.whole_btn_clicked:
             if self.note_textbox.text() != "":
@@ -224,15 +224,15 @@ class Main(QWidget):
             try:
                 self.dataset = pd.read_csv('data.csv')
                 self.dataset.loc[self.table.rowCount() - 1] = self.trans_list
-                self.dataset.to_csv('data.csv', index=False,header = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'],encoding='utf_8_sig')
+                self.dataset.to_csv('data.csv', index=False,header = ['date', 'sector', 'amount', 'details', 'note'],encoding='utf_8_sig')
             except pd.errors.EmptyDataError:
                 self.df.loc[self.table.rowCount() - 1] = self.trans_list
-                self.df.to_csv('data.csv', index=False,header = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'],encoding='utf_8_sig')
+                self.df.to_csv('data.csv', index=False,header = ['date', 'sector', 'amount', 'details', 'note'],encoding='utf_8_sig')
                 print('Empty csv file!')
 
             self.trans_list = []
             self.date_textbox.setText(self.datetime.toString(Qt.ISODate))
-            self.btn_1.setCurrentText("수입")
+            self.btn_1.setCurrentText("income")
             self.btn_2.clear()
             self.btn_2.addItem(self.incomeCatList[0])
             self.btn_2.addItem(self.incomeCatList[1])
@@ -244,24 +244,24 @@ class Main(QWidget):
 
     # 거래 항목에 따른 상세내역 변경
     def setCategory(self,text):
-        self.trans_amount_label.setText(text + ' 금액')
-        if text == '수입':
+        self.trans_amount_label.setText(text + ' amount')
+        if text == 'income':
             self.btn_2.clear()
             for cat in self.incomeCatList:
                 self.btn_2.addItem(cat)
 
-        elif text == '지출':
+        elif text == 'outcome':
             self.btn_2.clear()
             for cat in self.outcomeCatList:
                 self.btn_2.addItem(cat)
         else: 
             self.btn_2.clear()
-            self.btn_2.addItem('거래 내역')
+            self.btn_2.addItem('transactions')
     
     # 테이블에서 클릭된 줄에 따른 fields' value setting
     def setRowValue(self):
         if not self.whole_btn_clicked:
-            QMessageBox.about(self, "Title", "전체 조회를 눌러주세요")
+            QMessageBox.about(self, "Title", "press show all")
         
         if self.table.currentRow() < self.table.rowCount() - 1 and self.whole_btn_clicked:
             self.table_clicked_j = True
@@ -269,7 +269,7 @@ class Main(QWidget):
             self.btn_1.setCurrentText(self.table.item(self.table.currentRow(), 1).text())
             self.amount_textbox.setText(self.table.item(self.table.currentRow(), 2).text())
             self.btn_2.clear()
-            if self.table.item(self.table.currentRow(), 1).text() == '수입':
+            if self.table.item(self.table.currentRow(), 1).text() == 'income':
                 self.btn_2.addItem(self.table.item(self.table.currentRow(), 3).text())
                 for cat in self.incomeCatList:
                     if cat != self.table.item(self.table.currentRow(), 3).text():
@@ -283,11 +283,11 @@ class Main(QWidget):
                
             self.note_textbox.setText(self.table.item(self.table.currentRow(), 4).text())
 
-    # 데이터 수정
+    # 데이터 modify
     def modify(self):   
         
         if not self.whole_btn_clicked:
-            QMessageBox.about(self, "Title", "전체 조회를 눌러주세요")
+            QMessageBox.about(self, "Title", "press show all")
 
         if self.table_clicked_j and self.whole_btn_clicked:
            
@@ -300,33 +300,33 @@ class Main(QWidget):
             try:
                 self.dataset = pd.read_csv('data.csv')
                 self.dataset.loc[self.table.currentRow(), :] = [self.date_textbox.text(),self.btn_1.currentText(),self.amount_textbox.text(),self.btn_2.currentText(),self.note_textbox.text()]
-                self.dataset.to_csv('data.csv', index=False,header = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'],encoding='utf_8_sig')
+                self.dataset.to_csv('data.csv', index=False,header = ['date', 'sector', 'amount', 'details', 'note'],encoding='utf_8_sig')
             except pd.errors.EmptyDataError:
                 self.df.loc[self.table.currentRow(), :] = [self.date_textbox.text(),self.btn_1.currentText(),self.amount_textbox.text(),self.btn_2.currentText(),self.note_textbox.text()]
-                self.df.to_csv('data.csv', index=False,header = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'],encoding='utf_8_sig')
+                self.df.to_csv('data.csv', index=False,header = ['date', 'sector', 'amount', 'details', 'note'],encoding='utf_8_sig')
                 print('Empty csv file!')
 
             self.date_textbox.setText(self.datetime.toString(Qt.ISODate)) ##############################
-            self.btn_1.setCurrentText("수입")
+            self.btn_1.setCurrentText("income")
             self.btn_2.clear()
-            self.btn_2.addItem('이자')
-            self.btn_2.addItem('배당')
-            self.btn_2.addItem('급여')
-            self.btn_2.addItem('기타')
+            self.btn_2.addItem('interest')
+            self.btn_2.addItem('dividend')
+            self.btn_2.addItem('salary')
+            self.btn_2.addItem('etc.')
             self.amount_textbox.setText("")
             self.note_textbox.setText("")
             
-    # 데이터 삭제
+    # 데이터 delete
     def delete(self):   
         if not self.whole_btn_clicked:
-            QMessageBox.about(self, "Title", "전체 조회를 눌러주세요")
+            QMessageBox.about(self, "Title", "press show all")
         
         if self.table_clicked_j and self.whole_btn_clicked:
 
             try:
                 self.dataset = pd.read_csv('data.csv')
                 self.dataset.loc[self.table.currentRow(), :] = ["0", "0", "0", "0", "0"]
-                self.dataset.to_csv('data.csv', index=False,header = ['거래 일자', '거래 구분', '거래 금액', '상세 내역', '비고'],encoding='utf_8_sig')
+                self.dataset.to_csv('data.csv', index=False,header = ['date', 'sector', 'amount', 'details', 'note'],encoding='utf_8_sig')
             except pd.errors.EmptyDataError:
                 self.df.loc[self.table.currentRow(), :] = [self.date_textbox.text(),self.btn_1.currentText(),self.amount_textbox.text(),self.btn_2.currentText(),self.note_textbox.text()]
                 self.df.to_csv('data.csv', index=False,header = ["0", "0", "0", "0", "0"],encoding='utf_8_sig')
@@ -339,21 +339,21 @@ class Main(QWidget):
             self.table.setItem(self.table.currentRow(),4, QTableWidgetItem("")) 
 
             self.date_textbox.setText(self.datetime.toString(Qt.ISODate)) ###################################
-            self.btn_1.setCurrentText("수입")
+            self.btn_1.setCurrentText("income")
             self.btn_2.clear()
-            self.btn_2.addItem('이자')
-            self.btn_2.addItem('배당')
-            self.btn_2.addItem('급여')
-            self.btn_2.addItem('기타')
+            self.btn_2.addItem('interest')
+            self.btn_2.addItem('dividend')
+            self.btn_2.addItem('salary')
+            self.btn_2.addItem('etc.')
             self.amount_textbox.setText("")
             self.note_textbox.setText("")
 
-    # 초기화 버튼에 관한 코드
+    # reset 버튼에 관한 코드
     def reset(self):    
         self.reset = False
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
-        msg.setText("정말로 초기화 하시겠습니까? ")
+        msg.setText("Are you sure to reset? ")
         msg.setWindowTitle("reset")
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
 
@@ -376,14 +376,14 @@ class Main(QWidget):
             except pd.errors.EmptyDataError:
                 print('Empty csv file!') 
 
-    # 수입 내역만 조회
+    # income 내역만 조회
     def showIncomeList(self): 
         try:
             self.whole_btn_clicked = False
             self.dataset = pd.read_csv('data.csv')
             self.income = []
             for i in range(len(self.dataset)):
-                if self.dataset.iloc[i,1] == "수입":
+                if self.dataset.iloc[i,1] == "income":
                     self.income.append(self.dataset.iloc[i,:].values)
             self.table.setRowCount(len(self.income))
 
@@ -399,14 +399,14 @@ class Main(QWidget):
         except pd.errors.EmptyDataError:
             print('Empty csv file!')
     
-    # 지출 내역만 조회
+    # outcome 내역만 조회
     def showOutcomeList(self):
         try:
             self.whole_btn_clicked = False
             self.dataset = pd.read_csv('data.csv')
             self.out = []
             for i in range(len(self.dataset)):
-                if self.dataset.iloc[i,1] == "지출":
+                if self.dataset.iloc[i,1] == "outcome":
                     self.out.append(self.dataset.iloc[i,:].values)
             self.table.setRowCount(len(self.out))
 
@@ -441,14 +441,14 @@ class Main(QWidget):
         except pd.errors.EmptyDataError:
             print('Empty csv file!')
 
-    # 수입 계산 및 차트에 표시
+    # income 계산 및 chart에 표시
     def calcIncome(self):
         try:
             self.income_list = [0,0,0,0]
             self.dataset = pd.read_csv('data.csv')
             whole = self.dataset.iloc[:,:].values
             for i in range(len(whole)):
-                if whole[i][1] == '수입':
+                if whole[i][1] == 'income':
                     print(whole[i][3])
                     if whole[i][3] in self.incomeCatList:
                         k = self.incomeCatList.index(whole[i][3])
@@ -475,11 +475,11 @@ class Main(QWidget):
             for i in range(len(self.incomeCatList)):
                 chart.legend().markers(series)[i].setLabel(self.incomeCatList[i])       
 
-            self.in_1_txt.setText('총 수입 : ' + str(sum(self.income_list)) + '원')
-            self.in_2_txt.setText('이자 : ' + str(self.income_list[0]) + '원')
-            self.in_3_txt.setText('배당 : ' + str(self.income_list[1]) + '원')
-            self.in_4_txt.setText('급여 : ' + str(self.income_list[2]) + '원')
-            self.in_5_txt.setText('기타 : ' + str(self.income_list[3]) +'원')
+            self.in_1_txt.setText('whole income : ' + str(sum(self.income_list)) + 'won')
+            self.in_2_txt.setText('interest : ' + str(self.income_list[0]) + 'won')
+            self.in_3_txt.setText('dividend : ' + str(self.income_list[1]) + 'won')
+            self.in_4_txt.setText('salary : ' + str(self.income_list[2]) + 'won')
+            self.in_5_txt.setText('etc. : ' + str(self.income_list[3]) +'won')
             self.in_6_txt.setText("")
             self.in_7_txt.setText("")
             self.in_8_txt.setText("")
@@ -487,7 +487,7 @@ class Main(QWidget):
         except pd.errors.EmptyDataError:
             print('Empty csv file!')
 
-    # 지출 계산 및 차트에 표시
+    # outcome 계산 및 chart에 표시
     def calcOutcome(self):
         print("outcome")
 
@@ -496,7 +496,7 @@ class Main(QWidget):
             self.dataset = pd.read_csv('data.csv')
             whole = self.dataset.iloc[:,:].values
             for i in range(len(whole)):
-                if whole[i][1] == '지출':
+                if whole[i][1] == 'outcome':
                     if whole[i][3] in self.outcomeCatList:
                         k = self.outcomeCatList.index(whole[i][3])
                         self.outcome_list[k] += int(whole[i][2])
@@ -521,47 +521,47 @@ class Main(QWidget):
                 chart.legend().markers(series)[i].setLabel(self.outcomeCatList[i]) 
 
 
-            self.in_1_txt.setText('총 지출 : ' + str(sum(self.outcome_list)) + '원')
-            self.in_2_txt.setText('식대 : ' + str(self.outcome_list[0]) + '원')
-            self.in_3_txt.setText('의류 : ' + str(self.outcome_list[1]) + '원')
-            self.in_4_txt.setText('간식 : ' + str(self.outcome_list[2]) + '원')
-            self.in_5_txt.setText('여가 생활 : ' + str(self.outcome_list[3]) +'원')
-            self.in_6_txt.setText('보험 : ' + str(self.outcome_list[4]) + '원')
-            self.in_7_txt.setText('자기 계발 : ' + str(self.outcome_list[5]) + '원')
-            self.in_8_txt.setText('기타 : ' + str(self.outcome_list[6]) + '원')
+            self.in_1_txt.setText('whole outcome : ' + str(sum(self.outcome_list)) + 'won')
+            self.in_2_txt.setText('food : ' + str(self.outcome_list[0]) + 'won')
+            self.in_3_txt.setText('fashion : ' + str(self.outcome_list[1]) + 'won')
+            self.in_4_txt.setText('snack : ' + str(self.outcome_list[2]) + 'won')
+            self.in_5_txt.setText('leisure life : ' + str(self.outcome_list[3]) +'won')
+            self.in_6_txt.setText('insurance : ' + str(self.outcome_list[4]) + 'won')
+            self.in_7_txt.setText('self development : ' + str(self.outcome_list[5]) + 'won')
+            self.in_8_txt.setText('etc. : ' + str(self.outcome_list[6]) + 'won')
         
         except pd.errors.EmptyDataError:
             print('Empty csv file!')
 
-    # 수입 지출 비교
+    # income outcome 비교
     def compareInOut(self):
         print("compare")
 
         try:
-            out_sector_list = ['식대','의류','간식','여가 생활','보험','자기 계발','기타']
+            out_sector_list = ['food','fashion','snack','leisure life','insurance','self development','etc.']
             self.outcome_list = [0,0,0,0,0,0,0]
             self.dataset = pd.read_csv('data.csv')
             whole = self.dataset.iloc[:,:].values
             for i in range(len(whole)):
-                if whole[i][1] == '지출':
+                if whole[i][1] == 'outcome':
                     if whole[i][3] in out_sector_list:
                         k = out_sector_list.index(whole[i][3])
                         self.outcome_list[k] += int(whole[i][2])
             
-            in_sector_list = ['이자','배당','급여','기타']
+            in_sector_list = ['interest','dividend','salary','etc.']
             self.income_list = [0,0,0,0]
             self.dataset = pd.read_csv('data.csv')
             whole = self.dataset.iloc[:,:].values
             for i in range(len(whole)):
-                if whole[i][1] == '수입':
+                if whole[i][1] == 'income':
                     print(whole[i][3])
                     if whole[i][3] in in_sector_list:
                         k = in_sector_list.index(whole[i][3])
                         #income_list[k] += income_list[i]
                         self.income_list[k] += int(whole[i][2])
             series = QPieSeries()
-            series.append("총 수입", sum(self.income_list))
-            series.append("총 지출", sum(self.outcome_list))
+            series.append("whole income", sum(self.income_list))
+            series.append("whole outcome", sum(self.outcome_list))
             series.setLabelsVisible(True)
 
             chart = QChart()
@@ -575,15 +575,15 @@ class Main(QWidget):
             for slice in series.slices():
                 slice.setLabel("{:.2f}%".format(100 * slice.percentage()))
 
-            chart.legend().markers(series)[0].setLabel("총 수입") 
-            chart.legend().markers(series)[1].setLabel("총 지출")
+            chart.legend().markers(series)[0].setLabel("whole income") 
+            chart.legend().markers(series)[1].setLabel("whole outcome")
         
         except pd.errors.EmptyDataError:
             print('Empty csv file!')
 
 
-        self.in_1_txt.setText('총 수입 : ' + str(sum(self.income_list)) + '원')
-        self.in_2_txt.setText('총 지출 : ' + str(sum(self.outcome_list)) + '원')
+        self.in_1_txt.setText('whole income : ' + str(sum(self.income_list)) + 'won')
+        self.in_2_txt.setText('whole outcome : ' + str(sum(self.outcome_list)) + 'won')
         self.in_3_txt.setText("")
         self.in_4_txt.setText("")
         self.in_5_txt.setText("")
