@@ -23,7 +23,7 @@ I felt I need to start to manage money, so I made this program.
 <br>
 <ul>
 <br>
-  <li>Period: 14th Dec 2024 ~ 14th Dec 2024</li>
+  <li>Period: 14th Dec 2022 ~ 14th Dec 2022</li>
 <br>
   <li>Participant: 1</li>
 <br>
